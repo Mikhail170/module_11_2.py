@@ -5,7 +5,7 @@ class Introspection:
     def get_info(self):
         obj_type = type(self.obj)
         attributes = dir(self.obj)
-        methods = [attr for attr in attributes]
+        methods = [attr for attr in attributes if callable(getattr(self.obj, attr))]
         module = getattr(self.obj, '__module__', 'builtins')  # 'builtins' для встроенных типов
 
         info = {
